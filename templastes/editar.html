@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Página de Edição</h1>
+
+    <!-- Mensagens -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li style="color: {% if category == 'error' %}red{% elif category == 'success' %}green{% else %}blue{% endif %};">
+              {{ message }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form>
+        <label for="nome">Nome do Candidato:</label>
+        <input type="text" id="nome" name="nome"><br><br>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option>Aprovado</option>
+            <option>Reprovado</option>
+            <option>Pendente</option>
+        </select><br><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}">Voltar para Início</a> | 
+    <a href="{{ url_for('logout') }}">Sair</a>
+</body>
+</html>
